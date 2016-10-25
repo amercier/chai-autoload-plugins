@@ -1,9 +1,7 @@
-/**
- * Exported module
- * @type {Boolean}
- */
-function myModule() {
-  return true;
-}
+/* eslint import/no-dynamic-require:0, global-require:0 */
 
-export default myModule;
+const { join } = require('path');
+const { loadPackagePlugins } = require('./loader');
+
+const packageDefinition = require(join(process.cwd(), 'package.json'));
+loadPackagePlugins(packageDefinition);
