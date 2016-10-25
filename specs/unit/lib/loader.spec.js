@@ -4,10 +4,11 @@ import {
   loadPlugins,
   loadPackagePlugins,
 } from '../../../src/lib/loader';
+import thisPlugin from '../../..';
 
 const identity = o => o;
 const plugins = ['foo', 'bar', 'baz'];
-const config = { include: '(foo|ba)', exclude: ['baz'] };
+const config = { include: '(foo|ba|this)', exclude: ['baz'] };
 
 describe('loadPlugins', () => {
   it('loads included plugins', () => {
@@ -28,9 +29,7 @@ describe('loadPackagePlugins', () => {
   function getMocks() {
     const use = sinon.spy();
     const chai = { use };
-    const modules = {
-      chai, foo: 'foo', bar: 'bar', baz: 'baz', barthis: 'barthis', '../../package.json': { name: 'barthis' },
-    };
+    const modules = { chai, foo: sinon.spy(), bar: sinon.spy(), baz: sinon.spy(), thisPlugin };
     const require = name => modules[name];
     return { use, require, modules };
   }
@@ -48,6 +47,6 @@ describe('loadPackagePlugins', () => {
 
     loadPackagePlugins(packageDefinition, require);
     sinon.assert.neverCalledWith(use, modules.baz);
-    sinon.assert.neverCalledWith(use, modules.this);
+    sinon.assert.neverCalledWith(use, modules.thisPlugin);
   });
 });

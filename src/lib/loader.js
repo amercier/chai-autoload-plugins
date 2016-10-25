@@ -28,17 +28,19 @@ export function loadPlugins(plugins, loadPlugin, { include, exclude }) {
  *                                                            `include`)
  * @param {?function(name: string): object} _require=require CommonJS-like `require` method
  * @param {?object} chai=_require('chai') Chai
- * @param {?string} thisName=_require('../../package.json').name This package's name
  */
 export function loadPackagePlugins(
   packageDefinition,
   _require = require,
-  chai = _require('chai'),
-  thisName = _require('../../package.json').name
+  chai = _require('chai')
 ) {
   const { devDependencies = [], chaiAutoloadPlugins: config = {} } = packageDefinition;
   const plugins = Object.keys(devDependencies);
-  const loadPlugin = pluginName => chai.use(_require(pluginName));
-  const cfg = Object.assign({ include: '(^chai-|-chai$)', exclude: [thisName] }, config);
+  const loadPlugin = (name) => {
+    const plugin = _require(name);
+    if (typeof plugin === 'function') return chai.use(plugin);
+    return null;
+  };
+  const cfg = Object.assign({ include: '(^chai-|-chai$)', exclude: [] }, config);
   return loadPlugins(plugins, loadPlugin, cfg);
 }
