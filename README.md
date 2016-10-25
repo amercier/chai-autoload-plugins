@@ -18,3 +18,33 @@ Installation
 ------------
 
     npm install --save-dev chai-autoload-plugins
+
+Usage with [Mocha](https://www.npmjs.com/package/mocha)
+----------------
+
+Example using [dirty-chai](https://www.npmjs.com/package/dirty-chai):
+
+`package.json`
+
+```json
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-autoload-plugins": "*",
+    "dirty-chai": "^1.2.2",
+    "mocha": "^3.1.0"
+  }
+```
+
+`test.js`
+
+```js
+const chai = require('chai');
+
+expect(true).to.be.true();
+```
+
+Run:
+
+```
+node_modules/.bin/mocha --require chai-autoload-plugins test.js
+```
