@@ -3,6 +3,6 @@
   "destination": "./esdoc",
   "test": {
     "type": "mocha",
-    "source": "./specs"
+    "source": "./specs/unit"
   }
 }

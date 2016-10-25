@@ -13,9 +13,10 @@
     "prepublish": "npm run transpile",
     "doc": "rimraf esdoc && esdoc -c esdoc.json",
     "lint": "eslint .",
-    "mocha": "mocha specs --recursive --compilers js:babel-register",
+    "mocha": "mocha specs/unit --recursive --compilers js:babel-register",
     "start": "export NODE_ENV=development; npm run mocha -- --watch --growl",
-    "test": "export NODE_ENV=test; npm run lint && rimraf coverage && nyc npm run mocha"
+    "test": "export NODE_ENV=test; npm run lint && rimraf coverage && nyc npm run mocha",
+    "test-integration": "for t in $(ls specs/integration | grep -v shared); do echo \"### $t\"; rimraf \"specs/integration/$t/node_modules/chai-autoload-plugins\" && (cd \"specs/integration/$t\" && npm install && npm test) || exit 1; done"
   },
   "files": [
     "dist"
@@ -38,7 +39,9 @@
     "istanbul",
     "mocha"
   ],
-  "dependencies": {},
+  "peerDependencies": {
+    "chai": "*"
+  },
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
