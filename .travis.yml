@@ -9,6 +9,7 @@ matrix:
   - node_js: 4 # Minimum required
 script:
 - npm test -- -- --timeout 10000
+- npm run test-integration
 - '[[ "$BUILD_DOCS" != true ]] || npm run doc' # Ensures ESDoc generation doesn't fail
 after_success:
 - '[[ "$REPORT_COVERAGE" != true ]] || cat coverage/lcov.info | ./node_modules/.bin/codecov'
