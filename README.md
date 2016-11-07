@@ -49,6 +49,26 @@ Run:
 node_modules/.bin/mocha --require chai-autoload-plugins test.js
 ```
 
+See [Mocha integration tests](./specs/integration/mocha) for more details.
+
+Usage with other frameworks
+---------------------------
+
+The only difference is that you have to have to require `chai-autoload-plugins` manually in the test
+files:
+
+`test.js`
+
+```js
+const chai = require('chai');
+require('chai-autoload-plugins');
+
+expect(true).to.be.true();
+```
+
+See [Jasmine integration tests](./specs/integration/jasmine) or
+[Jest integration tests](./specs/integration/jest) for more details.
+
 Options
 -------
 
@@ -85,3 +105,11 @@ Regular expression or list of plugins to exclude. Precedes `include`.
 
 - Type: `String|String[]`
 - Default: `[]`
+
+Notes
+-----
+
+### Browser support
+
+This modules needs to read the contents of `package.json` on the disk, and therefore is not
+compatible with in-browser tests (ex: Karma). It is and will only be targeting NodeJS.
