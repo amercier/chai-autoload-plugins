@@ -44,9 +44,9 @@ function describeChaiCheckmark(chai, describe, it, assert, expect, library) {
   describe('chai-checkmark', function() {
     it('supports the should syntax', function (next) {
       expect(2).checks(next);
-      'sync test'.should.be.a('string').mark()
+      'sync test'.should.be.a('string').mark();
       setTimeout(function() {
-        'async test'.should.be.a('string').mark()
+        'async test'.should.be.a('string').mark();
       }, 0);
     });
   });
