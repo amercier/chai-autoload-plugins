@@ -1,6 +1,6 @@
 {
   "name": "chai-autoload-plugins",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Automatically load chai plugins declared in package.json",
   "license": "ISC",
   "repository": "amercier/chai-autoload-plugins",
