@@ -32,7 +32,7 @@ export function loadPlugins(plugins, loadPlugin, { include, exclude }) {
 export function loadPackagePlugins(
   packageDefinition,
   _require = require,
-  chai = _require('chai')
+  chai = _require('chai'),
 ) {
   const { devDependencies = [], chaiAutoloadPlugins: config = {} } = packageDefinition;
   const plugins = Object.keys(devDependencies);

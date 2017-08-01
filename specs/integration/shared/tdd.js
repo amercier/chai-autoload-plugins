@@ -44,9 +44,9 @@ function describeChaiCheckmark(chai, describe, it, assert, expect, library) {
   describe('chai-checkmark', function() {
     it('supports the should syntax', function (next) {
       expect(2).checks(next);
-      'sync test'.should.be.a('string').mark()
+      'sync test'.should.be.a('string').mark();
       setTimeout(function() {
-        'async test'.should.be.a('string').mark()
+        'async test'.should.be.a('string').mark();
       }, 0);
     });
   });
@@ -87,16 +87,6 @@ function describeChaiFuzzy(chai, describe, it, assert, expect, library) {
     it('supports the assert syntax', function() {
       assert.like({ a: 'a' }, { a: 'a' });
       assert.notLike({ a: 'a' }, { a: 'a', b: 'b' });
-    });
-  });
-}
-
-function describeChaiImmutable(chai, describe, it, assert, expect, library) {
-  describe('chai-immutable', function() {
-    it('supports the expect syntax', function() {
-      var List = library.immutable.List;
-      expect(List()).to.be.empty;
-      expect(List.of(1, 2, 3)).to.not.be.empty;
     });
   });
 }
@@ -175,7 +165,6 @@ module.exports = function(chai, describe, it, assert, expect, library) {
   describeChaiCheckmark(chai, describe, it, assert, expect, library);
   describeChaiDatetime(chai, describe, it, assert, expect, library);
   describeChaiFuzzy(chai, describe, it, assert, expect, library);
-  describeChaiImmutable(chai, describe, it, assert, expect, library);
   describeChaiJsonSchema(chai, describe, it, assert, expect, library);
   describeChaiString(chai, describe, it, assert, expect, library);
   describeDirtyChai(chai, describe, it, assert, expect, library);
